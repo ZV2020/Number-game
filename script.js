@@ -12,6 +12,7 @@ orderNumberField.innerText = orderNumber;
 answerField.innerText = `Вы загадали число ${answerNumber }?`;
 
 document.getElementById('btnRetry').addEventListener('click', function () {
+    window.location.reload()
     minValue = 0;
     maxValue = 100;
     orderNumber = 0;
@@ -19,9 +20,9 @@ document.getElementById('btnRetry').addEventListener('click', function () {
 
 document.getElementById('btnOver').addEventListener('click', function () {
     if (gameRun){
-        if (minValue === maxValue){
+        if (minValue == maxValue){
             const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
+            const answerPhrase = (phraseRandom === 2) ?
                 `Вы загадали неправильное число!\n\u{1F914}` :
                 `Я сдаюсь..\n\u{1F92F}`;
 
@@ -33,6 +34,26 @@ document.getElementById('btnOver').addEventListener('click', function () {
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerField.innerText = `Вы загадали число ${answerNumber }?`;
+        }
+    }
+})
+
+document.getElementById('btnLess').addEventListener('click', function () {
+    if (gameRun){
+        if (minValue == maxValue){
+            const phraseRandom = Math.floor( Math.random());
+            const answerPhrase = (phraseRandom === 1) ?
+                `Вы загадали неправильное число!\n\u{1F914}` :
+                `Я сдаюсь..\n\u{1F92F}`;
+
+            answerField.innerText = answerPhrase
+            gameRun = false
+        } else {
+            maxValue = answerNumber  - 1
+            answerNumber  = Math.floor((maxValue + minValue) / 2)
+            orderNumber++
+            orderNumberField.innerText = orderNumber
+            answerField.innerText = `Вы загадали число ${answerNumber }?`
         }
     }
 })

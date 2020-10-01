@@ -1,5 +1,5 @@
 
-# Практическое задание 10.7 Создание игры "Игра с числвми" для курса "Профессия веб-разработчик" в школе [SkillFactory](https://skillfactory.ru/)
+# Практическое задание 10.7 Создание игры "Игра с числами" для курса "Профессия веб-разработчик" в школе [SkillFactory](https://skillfactory.ru/)
 
 ![school logo](https://lms.skillfactory.ru/static/base-theme-ironwood/images/logo.png)
 
@@ -10,6 +10,8 @@
 * CSS
 
 * Java Script
+
+* Bootstrap
 
 
 ## [HTML](/index.html)
