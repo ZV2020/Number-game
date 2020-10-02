@@ -4,6 +4,10 @@ alert(`Загадайте любое целое число от ${minValue} до
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
+let victory = [`Я всегда угадываю\n\u{1F60E}`, `Какой я молодец!\n\u{1F60A}`, `Это было не трудно!\n\u{1F60E}`]
+let answerPhrase = [`Вы загадали неправильное число!\n\u{1F914}`, `Я сдаюсь..\n\u{1F92F}` , `Ну так же нельзя!\n\u{1F624}`]
+let guess = [`Вы загадали число` , `Должно быть это` , `A как насчет`]
+
 
 const orderNumberField = document.getElementById('orderNumberField');
 const answerField = document.getElementById('answerField');
@@ -18,49 +22,49 @@ document.getElementById('btnRetry').addEventListener('click', function () {
     orderNumber = 0;
 })
 
+if (minValue === NaN){
+    minValue = 0;
+}
+
+
 document.getElementById('btnOver').addEventListener('click', function () {
     if (gameRun){
-        if (minValue == maxValue){
-            const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 2) ?
-                `Вы загадали неправильное число!\n\u{1F914}` :
-                `Я сдаюсь..\n\u{1F92F}`;
-
-            answerField.innerText = answerPhrase;
-            gameRun = false;
+        if (minValue === maxValue || minValue == answerNumber){
+            var a = answerPhrase[ Math.floor( Math.random() * answerPhrase.length) ]
+            answerField.innerText = a
+            gameRun = false
         } else {
             minValue = answerNumber  + 1;
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `Вы загадали число ${answerNumber }?`;
+            var g = guess[ Math.floor( Math.random() * answerPhrase.length) ]
+            answerField.innerText = `${g} ${answerNumber }?`
         }
     }
 })
 
 document.getElementById('btnLess').addEventListener('click', function () {
     if (gameRun){
-        if (minValue == maxValue){
-            const phraseRandom = Math.floor( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                `Вы загадали неправильное число!\n\u{1F914}` :
-                `Я сдаюсь..\n\u{1F92F}`;
-
-            answerField.innerText = answerPhrase
-            gameRun = false
+        if (minValue === maxValue || minValue == answerNumber){
+            var a = answerPhrase[ Math.floor( Math.random() * answerPhrase.length) ]
+            answerField.innerText = a
+            gameRun = false;
         } else {
-            maxValue = answerNumber  - 1
-            answerNumber  = Math.floor((maxValue + minValue) / 2)
-            orderNumber++
-            orderNumberField.innerText = orderNumber
-            answerField.innerText = `Вы загадали число ${answerNumber }?`
+            maxValue = answerNumber  - 1;
+            answerNumber  = Math.floor((minValue + maxValue) / 2);
+            orderNumber++;
+            orderNumberField.innerText = orderNumber;
+            var g = guess[ Math.floor( Math.random() * answerPhrase.length) ]
+            answerField.innerText = `${g} ${answerNumber }?`
         }
     }
 })
 
 document.getElementById('btnEqual').addEventListener('click', function () {
     if (gameRun){
-        answerField.innerText = `Я всегда угадываю\n\u{1F60E}`
+        var v = victory[ Math.floor( Math.random() * victory.length) ]
+        answerField.innerText = v
         gameRun = false;
     }
 })
