@@ -30,11 +30,11 @@ document.getElementById('btnOver').addEventListener('click', function () {
             gameRun = false
         } else {
             minValue = answerNumber  + 1
-            answerNumber  = Math.floor((minValue + maxValue) / 2)
+            answerNumber = Math.floor((minValue + maxValue) / 2)
             orderNumber++
             orderNumberField.innerText = orderNumber
             var g = guess[ Math.floor( Math.random() * answerPhrase.length) ]
-            answerField.innerText = `${g} ${answerNumber }?`
+            answerField.innerText = `${g} ${answerNumber}?`
         }
     }
 })
